@@ -1,0 +1,27 @@
+transport_index:
+    path:     /
+    defaults: { _controller: "JardinBundle:transport:index" }
+    methods:  GET
+
+transport_show:
+    path:     /{id}/show
+    defaults: { _controller: "JardinBundle:transport:show" }
+    methods:  GET
+
+transport_new:
+    path:     /new
+    defaults: { _controller: "JardinBundle:transport:new" }
+    methods:  [GET, POST]
+
+transport_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "JardinBundle:transport:edit" }
+    methods:  [GET, POST]
+
+transport_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "JardinBundle:transport:delete" }
+
+admin_index:
+    path:     /admin_home
+    defaults: { _controller: "JardinBundle:Main:adminHome" }

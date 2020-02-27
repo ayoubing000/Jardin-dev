@@ -1,0 +1,49 @@
+{% extends ':User:layout-yk.html.twig' %}
+{% block headerMenu %}
+    {% include ':User:base_parent_header.html.twig' %}
+{% endblock headerMenu %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="{{ path('jardin_homepage') }}">Accueil</a></li>
+                    <li><a href="#">Profil</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <section id="shop_page" class="shop_page">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-9">
+                        {% block container %}
+
+                        {% endblock %}
+                    </div>
+
+                    <div class="col-md-3">
+        <div class="sidebar">
+            <div class="categories b_green">
+                <h4 class="title">Categories</h4>
+                <ul>
+                    <li><a href="{{ path('liste_enf') }}">Mes Enfants <span>76</span></a></li>
+                    <li><a href="{{ path('affiche_abn') }}">Mes Abonnement</a></li>
+                    <li><a href="#">Mes evenements <span>6</span></a></li>
+                    <li><a href="#">Event <span>24</span></a></li>
+                    <li><a href="#">Music lesson <span>16</span></a></li>
+                    <li><a href="#">Healthy food <span>9</span></a></li>
+                    <li><a href="#">Transport <span>4</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+{% endblock %}

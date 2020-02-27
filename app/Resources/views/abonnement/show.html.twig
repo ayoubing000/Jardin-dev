@@ -1,0 +1,60 @@
+{% include  ('base_user.html.twig') %}
+
+<div id="breadcrumbs" class="section-block-wrapper" xmlns="http://www.w3.org/1999/html">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">event</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section id="authorization_page" class="authorization_page">
+    <div class="container">
+{% block body %}
+    <h1>Abonnement</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ abonnement.id }}</td>
+            </tr>
+            <tr>
+                <th>Datadebut</th>
+                <td>{% if abonnement.dataDebut %}{{ abonnement.dataDebut|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefin</th>
+                <td>{% if abonnement.dateFin %}{{ abonnement.dateFin|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ abonnement.type }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ abonnement.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('abonnement_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('abonnement_edit', { 'id': abonnement.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
+    </div>
+        </section>

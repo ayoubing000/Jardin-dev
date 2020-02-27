@@ -1,0 +1,19 @@
+{% include  ('base_admin.html.twig') %}
+
+{% block body %}
+
+<div class="content-page">
+    <div class="content">
+    <h1>Abonnement creation</h1>
+
+    {{ form(form) }}
+
+
+    <ul>
+        <li>
+            <a href="{{ path('abonnement_index') }}">Back to the list</a>
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,95 @@
+{% extends 'base_admin.html.twig' %}
+      {% block body %}
+          <div class="content-page" style="background: white">
+
+          <div class="row">
+              <div class="col-12">
+                  <div>
+                      <h4 class="header-title">Liste des evenements</h4>
+                  </div>
+              </div>
+          </div>
+
+              <div class="col-12 mt-1" style="text-align: end;">
+                  <a class="btn btn-teal" href={{ path('add_evenement') }}>
+                      Ajouter
+                  </a>
+              </div>
+          <div class="table-responsive">
+              <table class="table m-0">
+
+                      <thead>
+                      <th>Titre</th>
+                      <th>Date Début</th>
+                      <th>Date Fin</th>
+                      <th>Type</th>
+                      <th>Description</th>
+                      <th>Nbr places</th>
+                      <th>Nbr places restantes</th>
+                      <th>active</th>
+                      <th></th>
+                      </thead>
+
+                      <tbody>
+                      {% for e in events %}
+                          {% set remainingPlacesCount = e.nombreDePlace - e.inscriptionEvenements|reduce((count,inscri)=>count+(inscri.enfants|length)) %}
+                          <tr>
+                              <td> {{ e.titre }} </td>
+                              <td>{{ e.dateDebut | date("m/d/Y") }}</td>
+                              <td>{{ e.dateFin | date("m/d/Y") }}</td>
+                              <td>{{ e.type }}</td>
+                              <td>{{ e.description }}</td>
+                              <td> {{ e.nombreDePlace }} </td>
+                              <td>
+                                  {{ remainingPlacesCount }}
+                              </td>
+                              <td>
+                                  {% if e.active %}
+                                      <i class="mdi mdi-check-circle text-success"
+                                         style="font-size:1.5rem;"></i>
+                                  {% else %}
+                                      <i class="mdi mdi-cancel text-danger"
+                                         style="font-size:1.5rem;"></i>
+                                  {% endif %}
+                              </td>
+                              <td>
+                                  <a class="btn btn-primary btn-rounded"
+                                     href="{{ path('update_evenement',{'id':e.id}) }}">
+                                      Modifier
+                                  </a>
+                                  <a class="btn btn-danger btn-icon"
+                                     href="{{ path('delete_evenement',{'id':e.id}) }}">
+                                      <i class="far fa-trash-alt"></i>
+                                  </a>
+
+                                  <a class="btn btn-icon btn-info"
+                                     href="{{ path('details_evenement',{'id':e.id}) }}">
+                                      <i class="mdi mdi-comment-quote"></i>
+                                  </a>
+                              </td>
+                          </tr>
+                      {% endfor %}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+
+      {% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/libs/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <!-- Buttons examples -->
+    <script src="{{ asset('assets/libs/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables/dataTables.keyTable.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables/dataTables.select.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/jszip/jszip.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/pdfmake/pdfmake.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/pdfmake/vfs_fonts.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/datatables/buttons.print.min.js') }}"></script>
+
+    <!-- Datatables init -->
+    <script src="{{ asset('assets/js/pages/datatables.init.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "::base_admin.html.twig" %}
+
+{% block body %}
+<div class="content-page">
+<div class="content" style="background: white">
+
+        <div class="row">
+            <div class="col-12">
+    <h1 class="header-title">Transport edit</h1>
+                <ul>
+
+                    <a href="{{ path('transport_index') }}">Back to the list</a>
+
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="container-fluid " style=" position:absolute ; margin-left: 50% ">
+    {{ form_start(edit_form) }}
+            {{ dump(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

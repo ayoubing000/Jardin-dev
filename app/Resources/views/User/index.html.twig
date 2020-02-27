@@ -1,0 +1,48 @@
+{% include 'base_admin.html.twig' %}
+<div class="content-page">
+    <div class="content">
+    <h1>Users list</h1>
+        <div class="table-responsive">
+            <table class="table table table-hover m-0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Adresse</th>
+                <th>Image</th>
+                <th>Age</th>
+                <th>Numtel</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td>{{ user.adresse }}</td>
+                <td>{{ user.image }}</td>
+                <td>{{ user.age }}</td>
+                <td>{{ user.numTel }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>
+                <a  type="button" class="btn btn-danger btn-bordered-danger" href="{{ path('user_show', { 'id': user.id }) }}">show</a>
+                <a ype="button" class="btn btn-primary btn-bordered-primary" href="{{ path('user_edit', { 'id': user.id }) }}">edit</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('user_new') }}">Create a new user</a>
+        </li>
+    </ul>
+    </div>
+    </div>
+
+</div>
+
+{% include 'navbar_admin.html.twig' %}

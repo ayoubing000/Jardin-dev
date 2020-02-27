@@ -1,0 +1,49 @@
+{% extends ":User:layout-yk.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block headerMenu %}
+    {% include ":User:base_parent_header.html.twig" %}
+{% endblock headerMenu %}
+
+{%  block body %}
+    <div id="breadcrumbs" class="section-block-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ path('jardin_homepage') }}">accueil</a></li>
+                        <li class="active">réinitialiser le mot de passe</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+<section id="authorization_page" class="authorization_page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 dot">
+                <h2 class="section-title">réinitialiser le mot de passe</h2>
+                <p class="section-description pb_20">Veuillez saisir l'adresse e-mail associée à votre compte.
+                    <br>Nous vous enverrons un lien pour réinitialiser votre mot de passe.</p>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+    <div>
+        <div class="reg_box">
+        <input type="text" id="username" name="username" required="required" placeholder="adresse e-mail" />
+        </div>
+
+    </div>
+    <div>
+        <button class="button ui-button ui-corner-all ui-widget" type="submit" id="_submit" name="_submit" value="{{ 'resetting.request.submit'|trans }}" >envoyer</button>
+
+    </div>
+</form>
+                </div>
+            </div>
+        </div>
+</section>
+{% endblock %}

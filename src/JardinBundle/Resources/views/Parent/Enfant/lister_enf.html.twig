@@ -1,0 +1,26 @@
+{% extends ('JardinBundle:Parent:Profil.html.twig') %}
+{% block container %}
+        <div class="col-md-12">
+            <table class="shop-cart">
+                <tbody>
+                <tr class="table-heading-row">
+                    <th>Nom</th>
+                    <th>Prenom</th>
+                    <th>Date de Naissance</th>
+                    <th>Age</th>
+                    <th>Action</th>
+                </tr>
+    {% for enf in enfs %}
+        <tr class="table-data-row">
+                <td>{{ enf.nom }}</td>
+                <td>{{ enf.prenom }}</td>
+                <td>{{ enf.dateNaissaince | date("Y-m-d") }}</td>
+                <td>{{ enf.age }}</td>
+                <td>{{ enf.age }}</td>
+
+            {% endfor %}
+
+            </table>
+        </div>
+{% endblock %}
+

@@ -1,0 +1,79 @@
+{% include ('base_admin.html.twig') %}
+{% block body %}
+<div class="content-page" style="background: white">
+    <div class="content">
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <h4 class="header-title mb-3">Liste des abonnements</h4>
+                </div>
+            </div>
+        </div>
+                <a type="button" class="btn btn-primary btn-bordered-primary"  href="{{ path('abonnement_index') }}">Create a new abonnement</a>
+
+        <div class="table-responsive" style="margin-top: 30px">
+            <table class="table table-active">
+                <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Edit / Supprimer</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for abn in abonnements %}
+                    <tr>
+                        <td>{{ abn.type }}</td>
+                        <td>{{ abn.description }}</td>
+                        <td>{{ abn.prix }}</td>
+                        <td>
+                            <a type="button" class="btn btn-outline-warning" href="{{ path('abonnement_edit', { 'id': abn.id }) }}"><i class="mdi mdi-file-document-edit"></i></a>
+                            <a type="button"  class="btn btn-outline-danger confirmModalLink" href="{{ path('abonnement_delete', { 'id': abn.id }) }}"><i class="mdi mdi-delete-forever"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <div class="modal hide fade" id="confirmModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmation suppression</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Voulez-vous supprimer cette abonnement ?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-secondary" id="confirmModalNo">No</a>
+                    <a href="#" class="btn btn-primary" id="confirmModalYes">Oui</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var theHREF;
+            $(".confirmModalLink").click(function(e) {
+                e.preventDefault();
+                theHREF = $(this).attr("href");
+                $("#confirmModal").modal("show");
+            });
+            $("#confirmModalNo").click(function(e) {
+                $("#confirmModal").modal("hide");
+            });
+
+            $("#confirmModalYes").click(function(e) {
+                window.location.href = theHREF;
+            });
+        });
+    </script>
+{% endblock %}

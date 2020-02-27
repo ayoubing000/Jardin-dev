@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Facture José Roux</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:300|Raleway:200,300" rel="stylesheet" type="text/css"/>
+    <style>
+        body {
+            font-family: "Open Sans", sans-serif;
+            line-height: 1.25;
+            width: 80%;
+            margin: 0 auto;
+        }
+        table {
+            border-collapse: collapse;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            table-layout: fixed;
+            background: #fefefe;
+        }
+        table caption {
+            font-size: 1.5em;
+            margin: .5em 0 .75em;
+            color: #f6f6f6;
+        }
+        table thead{
+            background:#1976d2;
+            border-bottom: none;
+            color: #fff;
+        }
+        table tr {
+            padding: .35em;
+        }
+        table tr:nth-child(even) {
+            background: #f0f0f0;
+        }
+        table tbody tr:hover {
+            background: #d9e3e8;
+        }
+        table th,
+        table td {
+            padding: 0.625em;
+            text-align: center;
+        }
+        table th {
+            font-size: .85em;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+        @media screen and (max-width: 600px) {
+            table {
+                border: 0;
+            }
+            table caption {
+                font-size: 1.3em;
+            }
+            table thead th {
+                display: none;
+            }
+            table tr {
+                display: block;
+            }
+            table td {
+                /* border-bottom: 1px solid #ddd; */
+                display: block;
+                text-align: left;
+            }
+            table td::before {
+                content: attr(data-label);
+                display: block;
+                text-transform: uppercase;
+                font-size: 0.7em;
+                margin-bottom: 0.6em;
+                color: #1976d2;
+            }
+            table td:last-child {
+                border-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<table>
+    <caption style="color: #1b262b">Notre Jardin D'enfant</caption>
+    <thead>
+    <tr>
+        <th>type</th>
+        <th>Date de ddebut</th>
+        <th>Date de fin</th>
+        <th>Description</th>
+        <th>statu</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td data-label="NIM">{{ abnenfan.type }}</td>
+        <td data-label="Nama">{{ abnenfan.dataDebut | date("Y/m/d")  }}</td>
+        <td data-label="Nama">{{ abnenfan.dateFin | date("Y/m/d")  }}</td>
+        <td data-label="Nama">{{ abnenfan.description }}</td>
+        <td data-label="Jurusan">{{ abnenfan.statu }}</td>
+    </tr>
+    </tbody>
+</table>
+
+        <p class="bottom-page text-right">
+            90TECH SAS - N° SIRET 80897753200015 RCS METZ<br>
+            6B, Rue aux Saussaies des Dames - 57950 MONTIGNY-LES-METZ 03 55 80 42 62 - www.90tech.fr<br>
+            Code APE 6201Z - N° TVA Intracom. FR 77 808977532<br>
+            IBAN FR76 1470 7034 0031 4211 7882 825 - SWIFT CCBPFRPPMTZ
+        </p>
+</body>
+</html>

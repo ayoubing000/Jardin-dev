@@ -1,0 +1,55 @@
+{% extends "::base_admin.html.twig" %}
+
+{% block body %}
+    <div class="content-page">
+        <div class="content" style="background: white">
+    <h1> liste chauffeurs</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Cin</th>
+                <th>Diplomes</th>
+                <th>Cv</th>
+                <th>Infsup</th>
+                <th>disponiblité</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for employee in employees %}
+            <tr>
+                <td><a href="{{ path('employee_show', { 'id': employee.id }) }}">{{ employee.username }}</a></td>
+                <td>{{ employee.getCin }}</td>
+                <td>{{ employee.diplomes }}</td>
+                <td>{{ employee.cv }}</td>
+                <td>{{ employee.infSup }}</td>
+                {% if employee.disponible == true %}
+                <td>Disponible</td>
+                {%  else %}
+                    <td>Non Disponible</td>
+                    {% endif %}
+
+                <td>
+                    <ul>
+
+                            <a class="btn btn-secondary" href="{{ path('employee_show', { 'id': employee.id }) }}">show</a>
+
+
+                            <a class="btn btn-purple" href="{{ path('employee_edit', { 'id': employee.id }) }}">edit</a>
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+
+            <a class="btn btn-primary" href="{{ path('employee_new') }}">Create a new employee</a>
+
+    </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,3 @@
+liste_enf:
+  path:     /enfant/lister
+  defaults: { _controller: JardinBundle:Enfant:liste }

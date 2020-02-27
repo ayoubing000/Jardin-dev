@@ -1,0 +1,20 @@
+lister_abn:
+  path:     /lister_abn
+  defaults: { _controller: JardinBundle:abonnement:showadminabonnment }
+
+abonnement_edit:
+  path:     /abonnement/{id}/edit
+  defaults: { _controller: JardinBundle:Adminabonnement:edit }
+  methods: [GET , POST]
+
+abonnement_delete:
+  path:     /abonnement/{id}/delete
+  defaults: { _controller: JardinBundle:Adminabonnement:delete }
+
+abonnement_index:
+  path:     /abonnement/ajouter
+  defaults: { _controller: JardinBundle:Adminabonnement:new }
+
+abonnement_show:
+    path:     /abonnement/show
+    defaults: { _controller: JardinBundle:Adminabonnement:index }

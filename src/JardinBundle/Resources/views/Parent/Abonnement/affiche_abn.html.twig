@@ -1,0 +1,25 @@
+{% extends ('JardinBundle:Parent:Profil.html.twig') %}
+{% block container %}
+    <table class="shop-cart">
+        <tbody>
+        <tr class="table-heading-row">
+                <th>Description</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Status de paiement</th>
+                <th>Nom d'enfant</th>
+            </tr>
+            <tbody>
+            {% for x in tab %}
+                <tr class="table-data-row">
+                <td>{{ x.description }}</td>
+                <td>{{ x.type }}</td>
+                <td>{{ x.statu }}</td>
+                <td>{{ x.statu_paiment }}</td>
+                <td>{{ x.nom }}</td>
+            </tr>
+            {% endfor%}
+            </tbody>
+        </table>
+{% endblock %}
+

@@ -1,0 +1,41 @@
+{% extends ":User:layout-yk.html.twig" %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block headerMenu %}
+    {% include ":User:base_parent_header.html.twig" %}
+{% endblock headerMenu %}
+
+{%  block body %}
+    <div id="breadcrumbs" class="section-block-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ path('jardin_homepage') }}">accueil</a></li>
+                        <li class="active">réinitialiser le mot de passe</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+<section id="authorization_page" class="authorization_page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 dot">
+                <h2 class="section-title">Email envoyer</h2>
+                {% block fos_user_content %}
+                    <p class="section-description pb_20">
+                        {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+                    </p>
+                {% endblock %}
+
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+    </div>
+    </div>
+    </div>
+    </section>
+{% endblock %}

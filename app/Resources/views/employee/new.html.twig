@@ -1,0 +1,21 @@
+{% extends '::base_admin.html.twig' %}
+{% block body %}
+<div class="content-page " style="background: white">
+    <div class="content">
+        <div class="container" style="position: absolute; margin-left: 25%">
+    <h1 class="blog_title ">Employee creation</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('employee_index') }}">Back to the list</a>
+        </li>
+    </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

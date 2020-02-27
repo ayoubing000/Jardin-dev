@@ -1,0 +1,58 @@
+{% extends ':User:layout-yk.html.twig'%}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block headerMenu %}
+    {{ include(':User:base_parent_header.html.twig') }}
+{% endblock headerMenu %}
+
+{% block body %}
+ <body>
+<div id="breadcrumbs" class="section-block-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">Login</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<section id="authorization_page" class="authorization_page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 dot">
+                <h2 class="section-title">Log In</h2>
+                <p class="section-description pb_20">Log in to your account<br>Don’t have an account yet? - <a href="{{ path('fos_user_registration_register') }}">Register</a></p>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form action="{{ path("fos_user_security_check") }}" method="post" class="p-2">
+                    {% if csrf_token %}
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                    {% endif %}
+                    <div class="reg_box">
+                        <input value="{{ last_username }}"  id="username" name="_username"  type="text" placeholder="Your email" required="required">
+                        <input class="reg_pass" id="password" name="_password" type="password" placeholder="********" required="required">
+                    </div>
+                    <div class="reg_checkbox">
+                        <input type="checkbox" class="checkbox" id="checkbox" />
+                        <label for="checkbox"></label>
+                        <span>Remember Me</span>
+                    </div>
+                    <button class="button ui-button ui-corner-all ui-widget" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" >Login</button>
+                    <div class="forgot_pass">
+                        <a href="{{ path('fos_user_resetting_request') }}">I forgot my password</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+{% endblock %}
+

@@ -1,0 +1,176 @@
+{% extends 'base_admin.html.twig' %}
+      {% block body %}
+<div class="content-page" style="background: white">
+
+          <div class="card">
+              <div class="card-body">
+                  <div class="row">
+                      <div class="col-12 d-flex mb-1">
+                          <div class="row">
+                              <div class="col-12">
+                                  <div>
+                                      <h4 class="header-title">
+                                          <h4> {{ event.titre }} </h4>
+                                          du {{ event.dateDebut | date("Y/m/d") }} au {{ event.dateFin | date("Y/m/d") }}
+                                      </h4>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div style="margin-left: auto;">
+                              <a class="btn btn-teal" href={{ path('list_evenement') }}>
+                                  <i class="ti-back-left"></i>
+                                  Quitter
+                              </a>
+                          </div>
+                          <hr>
+                      </div>
+
+                      <div class="col-md-12" style="height: 400px; overflow-y: auto;">
+
+                          <div class="timeline timeline-left">
+                              {% for c in event.commentaires %}
+                                  <article class="timeline-item">
+                                      <div class="timeline-desk">
+                                          <div class="panel">
+                                              <div class="timeline-box">
+                                                  <span class="arrow"></span>
+                                                  <span class="timeline-icon"><i
+                                                              class="mdi mdi-checkbox-blank-circle-outline"></i></span>
+                                                  <div class="d-flex">
+                                                      <h4 class="">{{ c.user.username }}</h4>
+                                                      <div style="margin-left: auto;">
+
+                                                          <button id="{{ "btn_save_comm_#{c.id}" }}"
+                                                                  class="btn btn-sm btn-success mr-1 btn-save-comm"
+                                                                  style="min-width:30px; display: none ">
+                                                              <i class="far fa-save"></i>
+                                                          </button>
+
+                                                          {% if c.user.username==app.user.username %}
+                                                              <button id="{{ "btn_edit_comm_#{c.id}" }}"
+                                                                      class="btn btn-sm btn-primary mr-1 btn-edit-comm"
+                                                                      style="min-width:30px; ">
+                                                                  <i class="far fa-edit"></i>
+                                                              </button>
+                                                          {% endif %}
+                                                          <a href="{{ path('delete_comment',{'id':c.id}) }}"
+                                                             class="btn btn-sm btn-danger"
+                                                             style="min-width:30px; margin-left: auto;">
+                                                              <i class="far fa-trash-alt"></i>
+                                                          </a>
+
+                                                      </div>
+
+                                                  </div>
+
+
+                                                  <p class="timeline-date text-muted">
+                                                      <small> {{ c.date | date("m-d-Y  h:m") }} </small></p>
+                                                  <p id="{{ "comm_contenu_#{c.id}" }}"
+                                                     class="comm-contenu"> {{ c.contenu }}  </p>
+
+                                                  <textarea id="{{ "comm_contenu_edit_#{c.id}" }}"
+                                                            class="comm-contenu-edit"
+                                                            style="display:none; width:100%">{{ c.contenu }}</textarea>
+
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </article>
+                              {% endfor %}
+                          </div>
+
+                      </div>
+
+
+                      <form class="form-vertical col-12" action="{{ path('add_comment',{'id':event.id}) }}"
+                            method="get">
+                          <div class="form-group row mt-3">
+
+                              <label class="col-md-2 col-form-label" for="example-textarea">Commentaire</label>
+                              <textarea name="text" class="col-md-6 form-control" rows="5"
+                                        id="example-textarea"></textarea>
+                              <div class="col-3 mt-2">
+                                  <input class="btn btn-primary" type="submit" value=" Commenter"/>
+                              </div>
+                          </div>
+                      </form>
+
+                  </div>
+              </div>
+          </div>
+</div>
+
+
+      {% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+                $(".btn-edit-comm").click(function () {
+                    $('.comm-contenu-edit').each(function (i) {
+                        $(this).hide();
+                    });
+                    $('.comm-contenu').each(function (i) {
+                        $(this).show();
+                    });
+
+                    $('.btn-save-comm').each(function (i) {
+                        $(this).hide();
+                    });
+                    $('.btn-edit-comm').each(function (i) {
+                        $(this).show();
+                    });
+                    var idCommentaire = getId(this.id);
+                    $('#comm_contenu_' + idCommentaire).hide();
+                    $('#comm_contenu_edit_' + idCommentaire).show();
+                    $('#btn_edit_comm_' + idCommentaire).hide();
+                    $('#btn_save_comm_' + idCommentaire).show();
+                });
+
+
+                $('.btn-save-comm').click(function () {
+                    var idCommentaire = getId(this.id);
+                    var contenu = $('#comm_contenu_edit_' + idCommentaire).val();
+
+                    $.post(
+                        "{{ path('update_comment') }}",
+                        {'id': idCommentaire, 'contenu': contenu},
+                        function (result) {
+                            var resultJson = JSON.parse(result);
+                            $('#comm_contenu_' + idCommentaire).html(resultJson['contenu']);
+                            $('#btn_edit_comm_' + idCommentaire).show();
+                            $('#btn_save_comm_' + idCommentaire).hide();
+                            $('#comm_contenu_' + idCommentaire).show();
+                            $('#comm_contenu_edit_' + idCommentaire).hide();
+                        });
+
+
+                });
+
+
+            }
+        );
+
+        function getId(elementId) {
+            index = elementId.lastIndexOf('_') + 1;
+            return elementId.substring(index);
+        }
+
+    </script>
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

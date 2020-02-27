@@ -1,0 +1,108 @@
+{% block navbar %}
+    <div class="left-side-menu">
+        <div class="user-box">
+            <div class="float-left">
+                <img src="assets/images/users/avatar-1.jpg" alt="" class="avatar-md rounded-circle">
+            </div>
+            <div class="user-info">
+                <a href="#">{{ app.user.username }}</a>
+                <p class="text-muted m-0">Administrator</p>
+            </div>
+        </div>
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <ul class="metismenu" id="side-menu">
+                <li class="menu-title">Navigation</li>
+                <li>
+                    <a href={{ path('dashboard_home') }}>
+                        <i class="ti-home"></i>
+                        <span> Dashboard </span>
+                    </a>
+                </li>
+                <li>
+                    <a href={{ path('list_evenement') }}>
+                        <i class="mdi mdi-calendar-account-outline"></i>
+                        <span> Evenements </span>
+                    </a>
+                </li>
+                <li>
+                    <a href={{ path('list_evenement') }}>
+                        <i class="mdi mdi-calendar-account-outline"></i>
+                        <span> Club </span>
+                    </a>
+                </li>
+                <li>
+                    <a href={{ path('list_evenement') }}>
+                        <i class="mdi mdi-calendar-account-outline"></i>
+                        <span> Abonnement </span>
+                    </a>
+                </li>
+                <li>
+                    <a href={{ path('list_evenement') }}>
+                        <i class="mdi mdi-calendar-account-outline"></i>
+                        <span> Cantin </span>
+                    </a>
+                </li>
+                <li>
+                    <a href={{ path('list_evenement') }}>
+                        <i class="mdi mdi-calendar-account-outline"></i>
+                        <span> Contrat </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="ion-md-bus"></i>
+                        <span class="col-lg-2"> Gestion Trasnport </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level mm-collapse" aria-expanded="false">
+
+                        <li><a href="{{ path('transport_index') }} ">
+                                <i class="far fa-list-alt"></i>
+                                <span class="col-lg-2">Liste Tranports</span>
+                            </a></li>
+
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="far fa-address-card"></i>
+                        <span class="col-lg-2"> Gestion Chauffeur </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level mm-collapse" aria-expanded="false">
+                        <li><a href="{{ path('employee_index') }}"><i class="fas fa-users-cog"></i><span class="col-lg-2">Liste Chauffeur</span> </a></li>
+                        <li><a href="{{ path('calendar') }}"><i class="far fa-calendar-alt"></i><span class="col-lg-2">Calendrier</span></a></li>
+                    </ul>
+                </li>
+                <!-- <li>
+                    <a href="ui-elements.html">
+                        <i class="ti-paint-bucket"></i>
+                        <span> UI Elements </span>
+                        <span class="badge badge-primary float-right">11</span>
+                    </a>
+                </li> -->
+                {#{% if is_granted('ROLE_SUPER_ADMIN') %}#}
+                <li>
+                    <a href="javascript: void(0);">
+                        <i class="fas fa-users"></i>
+                        <span> Gestion des comptes </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <ul class="nav-second-level mm-collapse" aria-expanded="false">
+                        <li>
+                            <a href={{ path('add_enseignant_account') }} >
+                                <i class="fas fa-user-plus"></i>
+                                Ajouter un compte
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                {#{% endif %}#}
+            </ul>
+        </div>
+        <!-- End Sidebar -->
+
+    </div>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% include('base_user.html.twig')  %}
+<div id="breadcrumbs" class="section-block-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">Prix</a></li>
+                    <li class="active">Notre Abonnement</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-md-9">
+        {% for flash_message in app.session.flashBag.get('error') %}
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <p class="description">
+                {{ flash_message }}
+            </p>
+        </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashBag.get('warning') %}
+            <div class="alert alert-warning">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <p class="description">
+                    {{ flash_message }}
+                </p>
+            </div>
+        {% endfor %}
+        {% for flash_message in app.session.flashBag.get('other') %}
+            <div class="alert alert-info">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <p class="description">
+                    {{ flash_message }}
+                </p>
+            </div>
+        {% endfor %}
+        <table class="shop-cart">
+            <tbody>
+            <tr class="table-heading-row">
+                <th>Description</th>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Action</th>
+            </tr>
+            {% for abn in abonnements %}
+            <tr class="table-data-row">
+                    <td>{{ abn.description }}</td>
+                    <td>{{ abn.type }}</td>
+                    <td>{{ abn.prix }}</td>
+                    <td colspan="5">
+                    <div class="update_btn">
+                    <a class="button" href="{{ path('save_abonnment',{'id': abn.id}) }}">Acheter</a>
+                    </div>
+                    </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

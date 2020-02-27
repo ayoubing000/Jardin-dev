@@ -1,0 +1,83 @@
+<div class="section_menu">
+    <div class="mnu_fixed">
+        <div class="mnu_wave"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="mnu mnu_mobile hidden-lg hidden-md">
+                        <div class="icon_shop hidden-lg hidden-md">
+                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                        </div>
+                        <div class="toggle_block hidden-lg hidden-md">
+                            <a href="#" class="toggle-mnu"><span></span></a>
+                        </div>
+                    </div>
+                    <div class="mnu hidden-sm hidden-xs">
+                        <ul>
+                            <li class="drop1"><a href="{{ path('jardin_homepage') }}">Accueil</a>
+                            </li>
+                            <li class="drop2"><a  href="#">À propos</a>
+                            </li>
+                            <li class="drop3"><a href="#">Services</a>
+                            </li>
+                            <li class="drop4"><a href="javascript:void(0);">Page</a>
+                                <ul class="mnu_child">
+                                    <li><a href="#">Evenements</a></li>
+                                    <li><a href="{{ path('liste_abn') }}">Abonnements</a></li>
+                                    <li><a href="{{ path('liste_abn') }}">Photos</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop5"><a href="#">Forum</a>
+                            </li>
+                            <li class="drop6"><a href="{{ path('send_email') }}">Contact us</a>
+                            </li>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li class="drop7"><a href="{{ path('parent_profil') }}">Profil</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12 top_mnu" style="block: none;">
+                <div class="col-sm-12 col-xs-12 top_mnu">
+                    <div class="mobile_mnu">
+                        <ul>
+                            <li class="drop1"><a href="#">Accueil</a>
+                            </li>
+                            <li class="drop2"><a class="drop2_mnu" href="#">À propos de nous</a>
+                                <ul class="mnu_child drop_mnu2">
+                                    <li><a href="#">À propos de nous</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop3"><a class="drop3_mnu" href="#">Nos Services</a>
+                                <ul class="mnu_child drop_mnu3">
+                                    <li><a href="#">Nos Services</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop4"><a class="drop4_mnu" href="#">Page</a>
+                                <ul class="mnu_child drop_mnu4">
+                                    <li><a href="">Evenements</a></li>
+                                    <li><a href="{{ path('liste_abn') }}">Abonnement</a></li>
+                                    <li><a href="#">Photos</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop5"><a class="drop5_mnu" href="#">Forums</a>
+                                <ul class="mnu_child drop_mnu5">
+                                    <li><a href="#">Forums</a></li>
+                                </ul>
+                            </li>
+                            <li class="drop6"><a href="{{ path('send_email') }}">contacter-Nous</a>
+                            </li>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                            <li class="drop7"><a href="#" class="active" >Profil</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+        </div>
+    </div>
+</div>

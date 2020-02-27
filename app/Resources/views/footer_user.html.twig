@@ -1,0 +1,68 @@
+{% block footer %}
+<footer>
+    <div class="overlay_footer_land"></div>
+    <div class="container">
+        <div class="row pb_40">
+            <div class="col-md-3 col-sm-12 col-xs-12 mb_15">
+                <div class="footer_about">
+                    <h3>About</h3>
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit</p>
+                    <p class="footer_time"><i class="fa fa-clock-o"><span></span></i>Mon-Fri: 8.00 AM - 6.00 PM</p>
+                    <div class="footer_social social_icon">
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12 mb_15">
+                <h3>Tweets</h3>
+                <div class="footer_tweets">
+                    <p><i class="fa fa-twitter"></i>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p><i class="fa fa-twitter"></i>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p><i class="fa fa-twitter"></i>consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12 mb_15">
+                <h3>Instagram</h3>
+                <div class="footer_instagram">
+                    <ul>
+                        <li><a href="#"><img src="{{ asset('index/img/footer/footer_1.jpg') }}" alt=""></a></li>
+                        <li><a href="#"><img src="{{ asset('index/img/footer/footer_2.jpg') }}" alt=""></a></li>
+                        <li><a href="#"><img src="{{ asset('index/img/footer/footer_3.jpg') }}" alt=""></a></li>
+                        <li><a href="#"><img src="{{ asset('index/img/footer/footer_4.jpg') }}" alt=""></a></li>
+                        <li><a href="#"><img src="{{ asset('index/img/footer/footer_5.jpg') }}" alt=""></a></li>
+                        <li><a href="#"><img src="{{ asset('index/img/footer/footer_6.jpg') }}" alt=""></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12 col-xs-12 mb_15">
+                <h3>Newsletters</h3>
+                <div class="footer_newsletters">
+                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit</p>
+                    <div class="footer_mail">
+                        <form method="post" id="contact_form_footer">
+                            <div class="form-group">
+                                <input id="email_footer" name="email" type="text" placeholder="Your email">
+                            </div>
+                            <div id="messegeResultFooter" class="messegeResult">
+                                <p>The message was successfully sent</p>
+                                <button type="submit">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container_fluent copywriting">
+        <div class="row">
+            <div class="col-md-12">
+                <p>Copyright © 2020 L'ABC </p>
+            </div>
+        </div>
+    </div>
+</footer>
+{% endblock %}

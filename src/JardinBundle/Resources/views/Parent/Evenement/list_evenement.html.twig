@@ -1,0 +1,179 @@
+{% extends 'User/layout-yk.html.twig' %}
+{% block headerMenu %}
+    {% include "User/header-menu.html.twig" %}
+{% endblock headerMenu %}
+
+{% block body %}
+    <div id="breadcrumbs" class="section-block-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Evenement</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="evenements">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                </div>
+            </div>
+
+            <div class="double_grids mb_50">
+                <div class="row">
+
+                    {% for event in events %}
+                    {% set remainingPlacesCount = event.nombreDePlace - event.inscriptionEvenements|reduce((cary,inscri)=>cary+(inscri.enfants|length)) %}
+                    <div class="col-md-6 wow fadeInUp" style="margin-bottom: 50px;">
+                        <div class="grids_block" style="min-height:500px; height:500px">
+                            <div class="grids_block_top">
+                            </div>
+                            <div class="grids_block_center">
+                                <div class="date_events_left b_blue_light">
+                                    <div class="date_middle">
+                                        {#  {{ event.dateDebut | date("m-d-Y  h:m") }}#}
+                                        <p class="pb_10"><span>{{ event.dateDebut | date("d") }}</span></p>
+                                        <p> {{ event.dateDebut | date("M Y") }}</p>
+                                    </div>
+                                </div>
+                                <div class="date_events_right b_blue_light">
+                                    <p class="block_time pb_10"><i class="fa fa-clock-o"><span></span></i>
+                                        du {{ event.dateDebut | date("m-d-Y  h:m") }}
+                                        au {{ event.dateFin | date("m-d-Y  h:m") }}
+                                    </p>
+                                    <p class="block_time normal"><i class="fa fa-map-marker"><span></span></i>
+                                        address</p>
+                                </div>
+                            </div>
+                            <div class="grids_brief">
+                                <h4 class="grids_title t_red">
+                                    <a href="event.html">{{ event.titre }}</a></h4>
+                                <p class="grids_description t_grey">{{ event.description }}</p>
+                                <hr>
+                                <p class="grids_description t_grey"> Nombre de places restantes:
+                                    {{ remainingPlacesCount }}
+                                </p>
+                                {% if user in event.inscriptionEvenements|map(inscri=>inscri.user) %}
+                                <br>
+                                <p class="grids_description t_grey"> Vos enfants inscrits: </p>
+
+                                {% for enfant in user.enfants %}
+                                    {% if event in enfant.inscriptionEvenements|map(inscri=>inscri.evenement) %}
+
+                                        <p class="grids_description t_grey">
+                                            - {{ enfant.prenom }} {{ enfant.nom }}
+                                        </p>
+                                    {% endif %}
+                                {% endfor %}
+                                <div style="display:flex">
+                                    <a class="button b_green_green_light"
+                                       style="color: white;background-color: orange; margin-top: 20px;"
+                                       href="{{ path('desinscription_evenements',{'idEvenement':event.id}) }}">
+                                        désinscription
+                                    </a>
+
+                                    {% else %}
+                                    {% if remainingPlacesCount>0 %}
+                                    <div style="display:flex">
+                                        <a class="button b_green_green_light register-form"
+                                           style="color: white;margin-top: 20px;"
+                                           href="#{{ event.id }}">
+                                            inscription
+                                        </a>
+                                        {% else %}
+                                            <p style="color: orangered">Il n'y a pas de place disponible </p>
+                                        {% endif %}
+
+                                        {% endif %}
+
+                                        <a class="button b_green_green_light"
+                                           style="color: white; margin-top: 20px; background-color: #337ab7;"
+                                           href="{{ path('details_evenement_parent',{'id':event.id}) }}">
+                                            <i class="pr_10  fa fa-eye"></i>
+                                            Détails Evenement
+                                        </a>
+                                    </div>
+
+                                    <br>
+
+                                    {{ socialButtons( { 'facebook': {'locale':'fr_FR', 'send':true}} ) }}
+
+
+                                    <form method="get" id="{{ event.id }}" class="white-popup-block mfp-hide"
+                                          action="{{ path('inscription_evenements',{'idEvenement':event.id}) }}">
+                                        <div class="register_block">
+                                            <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                                            <div class="register_form_top">
+                                                <div class="register_wave"></div>
+                                                <h2 class="section-title">{{ event.titre }}</h2>
+                                                <p class="section-description">{{ event.description }}</p>
+                                            </div>
+                                            <div class="register_date">
+                                                <div class="register_wave"></div>
+                                                <div class="row">
+                                                    <div class="col-md-3 col-sm-3">
+                                                        <ul class="r_date">
+                                                            <li class="d_number">{{ event.dateDebut | date("d") }}</li>
+                                                            <li class="d_date">{{ event.dateDebut | date("M Y") }}</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-9 col-sm-9">
+                                                        <ul class="r_info">
+                                                            <li>
+                                                                <i class="fa fa-clock-o"></i>{{ event.dateDebut | date("h:m") }}
+                                                            </li>
+                                                            <li><i class="fa fa-map-marker"></i>adresse</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="register_input">
+                                                <div class="contact_form_white">
+
+                                                    <div class=" row">
+                                                        <span>Enfants à inscrire  </span>
+
+
+                                                        {% for enfant in user.enfants %}
+                                                            <div class="reg_checkbox" style="display: block">
+                                                                <input type="checkbox" class="checkbox"
+                                                                       id="{{ "#{enfant.prenom}_#{event.id}" }}"
+                                                                       name=" {{ enfant.prenom }}"/>
+                                                                <label for="{{ "#{enfant.prenom}_#{event.id}" }}"></label>
+                                                                <span>{{ enfant.prenom }}</span>
+                                                            </div>
+                                                        {% endfor %}
+
+
+                                                    </div>
+
+
+                                                    <div id="messegeResult" class="messegeResult">
+                                                        <p>The message was successfully sent</p>
+                                                        <input class="button" type="submit" value="Valider">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+{% endblock %}

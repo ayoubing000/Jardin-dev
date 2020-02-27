@@ -1,0 +1,43 @@
+{% extends "::base_admin.html.twig" %}
+{% block body %}
+<div class="content-page">
+    <div class="content" style="background: white">
+    <h1>Transport</h1>
+
+    <table class="table">
+        <tbody class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <td class="table-primary">{{ transport.id }}</td>
+            </tr>
+            <tr>
+                <th>Nbrbus</th>
+                <td class="table-primary">{{ transport.nbrBus }}</td>
+            </tr>
+            <tr>
+                <th>Nbrenfant</th>
+                <td class="table-primary">{{ transport.nbrEnfant }}</td>
+            </tr>
+            <tr>
+                <th>Destination</th>
+                <td class="table-primary">{{ transport.destination }}</td>
+            </tr>
+        </tbody >
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('transport_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('transport_edit', { 'id': transport.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,47 @@
+{%  extends(':User:layout-yk.html.twig')%}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block headerMenu %}
+    {% include ":User:base_parent_header.html.twig" %}
+{% endblock headerMenu %}
+{% block body %}
+    <div id="breadcrumbs" class="section-block-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="{{ path('jardin_homepage') }}">Home</a></li>
+                        <li class="active">Register</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="authorization_page" class="authorization_page">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 dot">
+                    <h2 class="section-title">Register</h2>
+                    <p class="section-description">Already have an account? - <a href="{{ path('fos_user_security_login') }}">Log In</a></p>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+                        <div class="reg_box">
+                            {{ form_errors(form.email) }}
+                            {{ form_widget(form.email, { 'attr': {'placeholder': 'form.email'|trans } }) }}
+                            {{ form_errors(form.username) }}
+                            {{ form_widget(form.username, { 'attr': {'placeholder': 'form.username'|trans } }) }}
+                            {{ form_widget(form.plainPassword.first, { 'attr': {'placeholder': 'form.password'|trans } }) }}
+                            {{ form_widget(form.plainPassword.second, { 'attr': {'placeholder': 'form.password_confirmation'|trans } }) }}
+                        </div>
+                        <input class="button" id="btn-rg" type="submit" value="{{ 'registration.submit'|trans }}" />
+                    {{ form_widget(form._token, {'attr':{'hidden':'true'}}) }}
+                    {{ form_end(form,{'render_rest': false}) }}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

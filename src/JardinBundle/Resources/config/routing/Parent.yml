@@ -1,0 +1,7 @@
+parent_profil:
+  path:     /profil
+  defaults: { _controller: JardinBundle:Parent:profil }
+
+parent_enfant:
+  path:     /enfants
+  defaults: { _controller: JardinBundle:Parent:enfant }

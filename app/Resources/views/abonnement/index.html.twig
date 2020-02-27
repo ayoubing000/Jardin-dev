@@ -1,0 +1,52 @@
+{% include  ('base_admin.html.twig') %}
+
+{% block body %}
+
+    <div class="content-page">
+        <div class="content">
+
+            <h1>Abonnements list</h1>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-light">
+                <tr>
+                    <th>Id</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for abonnement in abonnements %}
+                    <tr>
+                        <td scope="row">
+                            <a href="{{ path('abonnement_show', { 'id': abonnement.id }) }}">{{ abonnement.id }}</a>
+                        </td>
+                        <td>{{ abonnement.type }}</td>
+                        <td>{{ abonnement.description }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('abonnement_show', { 'id': abonnement.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('abonnement_edit', { 'id': abonnement.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            </div>
+
+            <ul>
+                <li>
+                    <a href="{{ path('abonnement_new') }}">Create a new abonnement</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}

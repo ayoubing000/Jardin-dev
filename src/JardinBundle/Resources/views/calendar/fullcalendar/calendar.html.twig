@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% include '::base_admin.html.twig' %} }}
+
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    {% block stylesheets %}
+        <link href="{{ asset('assets/libs/fullcalendar/fullcalendar.min.css') }}" rel="stylesheet" type="text/css" />
+        <!-- App css -->
+        <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" id="bootstrap-stylesheet" />
+        <link href="{{ asset('assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/app.min.css')}}" rel="stylesheet" type="text/css" id="app-stylesheet" />
+
+
+    {% endblock %}
+
+</head>
+<body>
+
+{% block body %}
+    <div class="content-page" style="background: white">
+        <div class="content">
+
+
+            <div id="calendar-holder" class="mt-5 mt-xl-0"></div>
+
+
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('assets/js/vendor.min.js') }}"></script>
+
+    <!-- plugin js -->
+    <script type="text/javascript" src="{{ asset('assets-yk/js/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/fullcalendar/js/fullcalendar/fullcalendar.default-settings.js') }}"></script>
+
+    <!-- Calendar init -->
+    <script src="{{ asset('assets/js/pages/calendar.init.js') }}"></script>
+
+    <!-- App js -->
+
+
+
+
+
+
+{% endblock %}
+</body>
+</html>

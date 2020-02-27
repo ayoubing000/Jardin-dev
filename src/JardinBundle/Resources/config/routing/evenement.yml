@@ -1,0 +1,31 @@
+list_evenement:
+    path:     /list
+    defaults: { _controller: "JardinBundle:Evenement:listEvenement" }
+
+add_evenement:
+    path:     /add
+    defaults: { _controller: "JardinBundle:Evenement:addEvenement" }
+
+delete_evenement:
+    path:     /delete/{id}
+    defaults: { _controller: "JardinBundle:Evenement:deleteEvenement" }
+
+update_evenement:
+    path:     /update/{id}
+    defaults: { _controller: "JardinBundle:Evenement:updateEvenement" }
+
+details_evenement:
+    path:     /detail/{id}
+    defaults: { _controller: "JardinBundle:Evenement:detailsEvenement" }
+
+add_comment:
+    path:     /add-comment/{id}
+    defaults: { _controller: "JardinBundle:Commentaire:addComment" }
+
+delete_comment:
+    path:     /delete-comment/{id}
+    defaults: { _controller: "JardinBundle:Commentaire:deleteComment" }
+
+update_comment:
+    path:     /update
+    defaults: { _controller: "JardinBundle:Commentaire:updateComment" }

@@ -1,0 +1,16 @@
+save_abonnment:
+    path:   /abnselectioner/{id}
+    defaults: { _controller: JardinBundle:abonnement:abnselectioner }
+    methods:  [GET, POST]
+
+enrigistrer_abn:
+    path:     /enrigistrer_abn
+    defaults: { _controller: JardinBundle:abonnement:registerabn }
+
+affiche_abn:
+    path:     /affiche
+    defaults: { _controller: JardinBundle:abonnement:affichenfantabn }
+
+liste_abn:
+    path:     /liste
+    defaults: { _controller: JardinBundle:abonnement:list }

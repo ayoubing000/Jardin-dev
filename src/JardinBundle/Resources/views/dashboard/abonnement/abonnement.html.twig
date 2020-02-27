@@ -1,0 +1,41 @@
+{% extends 'base_admin.html.twig' %}
+    {% block body %}
+        <div class="row">
+            <div class="col-12">
+                <div>
+                    <h4 class="header-title">Liste des abonnements</h4>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table m-0">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom des enfants</th>
+                    <th>Date de debut</th>
+                    <th>Date de fin</th>
+                    <th>statut</th>
+                    <th>Etat de Paiment</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for data in data %}
+                <tr>
+                    <th scope="row">{{ data.enfant.id }}</th>
+                    <td>{{ data.enfant.nom }}</td>
+                    <td>{{ data.dataDebut | date("Y/m/d") }}</td>
+                    <td>{{ data.dateFin | date("Y/m/d") }}</td>
+                    <td>{{ data.statu }}</td>
+                    <td>{{ data.getStatuPaiment() }}</td>
+                    <td>
+                        <button class="btn btn-icon btn-primary"> <a href="{{ path('pdf_gen',{ 'id': data.id }) }}" class="mdi mdi-file-multiple-outline"></a></button>
+                        <button class="btn btn-icon btn-danger"> <a href="{{ path('send_phone') }}"class="fas fa-times"></a> </button>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+{% endblock %}

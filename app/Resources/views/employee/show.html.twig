@@ -1,0 +1,47 @@
+{% extends '::base_admin.html.twig' %}
+{% block body %}
+<div class="content-page">
+    <div class="content" style="background: white">
+    <h1>Chauffeur</h1>
+
+    <table class="table">
+        <tbody class="thead-dark">
+            <tr>
+                <th>Id</th>
+                <td class="table-primary">{{ employee.id }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td class="table-primary">{{ employee.cin }}</td>
+            </tr>
+            <tr>
+                <th>Diplomes</th>
+                <td class="table-primary">{{ employee.diplomes }}</td>
+            </tr>
+            <tr>
+                <th>Cv</th>
+                <td class="table-primary">{{ employee.cv }}</td>
+            </tr>
+            <tr>
+                <th>Infsup</th>
+                <td class="table-primary">{{ employee.infSup }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('employee_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('employee_edit', { 'id': employee.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+    </div>
+</div>
+{% endblock %}

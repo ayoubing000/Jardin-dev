@@ -1,0 +1,10 @@
+services:
+#    jardin.example:
+#        class: JardinBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]
+
+    fos_user.doctrine_registry:
+        alias: doctrine
+    redirect.after.login:
+        class: JardinBundle\Redirection\AfterLoginRedirection
+        arguments: ["@router"]

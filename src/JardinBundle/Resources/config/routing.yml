@@ -1,0 +1,83 @@
+jardin_homepage:
+    path:     /
+    defaults: { _controller: JardinBundle:Default:index }
+
+parent_home:
+    path:       /parent-home
+    defaults:   {_controller: JardinBundle:Main:parentHome }
+
+dashboard_home:
+    path:       /dashboard
+    defaults:   {_controller: JardinBundle:Main:dashboardHome }
+
+enseignant_home:
+    path:       /enseignant-home
+    defaults: {_controller: JardinBundle:Main:enseignantHome}
+
+evenement_feature:
+    resource: "@JardinBundle/Resources/config/routing/evenement.yml"
+    prefix:   /dashboard/events
+
+abonnment:
+    resource:   "@JardinBundle/Resources/config/routing/abonnement.yml"
+    prefix: /abonnemant/
+
+Pundle:
+    resource:   "@JardinBundle/Resources/config/routing/bundle.yml"
+    prefix: /Pundle/
+
+admin:
+    resource:   "@JardinBundle/Resources/config/routing/admin.yml"
+    prefix: /admin
+
+parent:
+    resource:   "routing/Parent.yml"
+    prefix: /parent
+
+enfant:
+    resource:   "routing/enfant.yml"
+    prefix: /parent
+
+
+evenement_dashboard:
+    resource: "@JardinBundle/Resources/config/routing/evenement.yml"
+    prefix:   /dashboard/events
+
+
+# url parent
+parent_evenements:
+    path:       /parent/evenements
+    defaults: {_controller: JardinBundle:Evenement:listEvenementParent}
+
+inscription_evenements:
+    path:       /parent/inscription/{idEvenement}
+    defaults: {_controller: JardinBundle:InscriptionEvenement:inscrireEvenement}
+
+desinscription_evenements:
+    path:       /parent/deinscription/{idEvenement}
+    defaults: {_controller: JardinBundle:InscriptionEvenement:annulerInscription}
+
+details_evenement_parent:
+    path:     /parent/details-evenement/{id}
+    defaults: { _controller: "JardinBundle:Evenement:detailsEvenementParent" }
+
+parent_add_comment:
+    path:     /parent/add-comment/{id}
+    defaults: { _controller: "JardinBundle:Commentaire:addComment" }
+
+parent_delete_comment:
+    path:     /parent/delete-comment/{id}
+    defaults: { _controller: "JardinBundle:Commentaire:deleteComment" }
+
+jardin_transport:
+    resource: "@JardinBundle/Resources/config/routing/transport.yml"
+    prefix:   /transport
+
+jardin_employee:
+    resource: "@JardinBundle/Resources/config/routing/employee.yml"
+    prefix:   /employee
+
+ancarebeca_full_calendar_load:
+    path:     /full-calendar/load
+    defaults: { _controller: JardinBundle:Calendar:load }
+

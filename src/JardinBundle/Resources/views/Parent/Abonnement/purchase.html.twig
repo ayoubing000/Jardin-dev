@@ -1,0 +1,36 @@
+{{ include('base_user.html.twig') }}
+<div class="container">
+<form action="{{ path('enrigistrer_abn') }}" method="post">
+    <table class="table">
+        <thead class="thead-light">
+        <tr>
+            <th>#</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Prix</th>
+            <th>Liste d'enfant</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row"><input type="text" name="id" value="{{ ko.id }}" hidden>{{ ko.id }}</th>
+            <td><input type="text" name="type" hidden value="{{ ko.type }}">{{ ko.type }}</td>
+            <td><input type="text" name="description" hidden value="{{ ko.description }}">{{ ko.description }}</td>
+            <td><input type="text" name="prix" hidden  value="{{ ko.prix }}">{{ ko.prix }}</td>
+            <td>
+                <select name="enfant">
+                    {% for e in enf %}
+                        <option value="{{ e.id }}" name="{{ e.id }}">{{ e.nom }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+            <td>
+                <button type="submit"  class="btn btn-primary">Acheter</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+</div>
+
+

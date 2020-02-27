@@ -1,0 +1,66 @@
+{% extends "::base_admin.html.twig" %}
+{% block body %}
+<div class="content-page">
+
+    <div class="content" style="background: white">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+        <div><h1 class="header-title">Transports list </h1></div>
+
+
+
+                </div>
+                <span style="float: right" ><a  class=" btn btn-success "  href="{{ path('transport_new') }}"> Nouveau transport</a></span>
+            </div>
+
+
+
+
+
+
+
+
+
+    <table class="table table-active" style="margin-top: 30px">
+        <thead>
+            <tr>
+                <th style="text-align: center">titre</th>
+                <th style="text-align: center">Nbrbus</th>
+                <th style="text-align: center">Nbrenfant</th>
+                <th style="text-align: center">Destination</th>
+                <th style="text-align: center">Date Debut</th>
+                <th style="text-align: center">Date Fin</th>
+                <th style="text-align: center">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for transport in transports %}
+            <tr>
+                <td style="text-align: center"><a href="{{ path('transport_show', { 'id': transport.id }) }}">{{ transport.titre}}</a></td>
+                <td style="text-align: center">{{ transport.nbrBus }}</td>
+                <td style="text-align: center">{{ transport.nbrEnfant }}</td>
+                <td style="text-align: center">{{ transport.destination }}</td>
+                <td style="text-align: center">{{ transport.dateDebut.date | date('h:m || d/m/y')}}</td>
+                <td style="text-align: center">{{ transport.dateFin.date | date('h:m || d/m/y')}}</td>
+
+                <td>
+                    <ul style="text-align: center">
+
+                            <a class="btn btn-outline-primary" href="{{ path('transport_show', { 'id': transport.id }) }}"><i class="mdi mdi-book-open-page-variant"></i> </a>
+
+                            <a class="btn btn-icon btn-outline-warning" href="{{ path('transport_edit', { 'id': transport.id }) }}"><i class="mdi mdi-file-document-edit-outline"></i> </a>
+                            <a class="btn btn-icon btn-outline-danger" href="{{ path('transport_delete', { 'id': transport.id }) }}"><i class="mdi mdi-delete-forever"></i> </a>
+
+
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

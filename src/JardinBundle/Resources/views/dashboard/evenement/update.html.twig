@@ -1,0 +1,72 @@
+{% extends 'base_admin.html.twig' %}
+      {% block body %}
+          <div class="card">
+          <div class="card-body">
+          <div class="row">
+              <div class="col-12 mb-1">
+                  <h4>Modifier evenement</h4>
+                  <hr>
+              </div>
+
+              <div class="col-12 mt-1" style="text-align: end;">
+                  <a class="btn btn-teal" href={{ path('list_evenement') }}>
+                      <i class="ti-back-left"></i>
+                      Quitter
+                  </a>
+              </div>
+
+              <div class="col-12 mt-1 mb-4">
+                  <form method="POST" class="form-horizontal">
+                      <div class="form-group row">
+
+                          <label class="col-md-2 col-form-label">Titre</label>
+                          <div class="col-md-10">
+                              <input type="text" name="titre" value="{{ event.titre }}">
+                          </div>
+                         {# <label class="col-md-2 col-form-label">image</label>
+                          <div class="col-md-10">
+                              <input type="text" name="description" value="{{ event.image }}">
+                          </div>#}
+
+                          <label class="col-md-2 col-form-label">Date debut</label>
+                          <div class="col-md-10">
+                              <input type="date" name="dateDebut" value="{{ event.dateDebut | date("Y-m-d") }}">
+                          </div>
+
+                          <label class="col-md-2 col-form-label">Date fin</label>
+                          <div class="col-md-10">
+                              <input type="date" name="dateFin" value="{{ event.dateFin | date("Y-m-d") }}">
+                          </div>
+
+                          <label class="col-md-2 col-form-label">Type</label>
+                          <div class="col-md-10">
+                              <input type="text" name="type" value="{{ event.type }}">
+                          </div>
+
+                          <label class="col-md-2 col-form-label">Description</label>
+                          <div class="col-md-10">
+                              <input type="text" name="description" value="{{ event.description }}">
+                          </div>
+                          <label class="col-md-2 col-form-label">nombre de place </label>
+                          <div class="col-md-10">
+                              <input type="text" name="description" value="{{ event.nombreDePlace }}">
+                          </div>
+
+
+
+                          <!-- <label class="col-md-2 col-form-label">Active</label>
+                                    <div class="col-md-10">
+                                        <input type="number" name="type" value="{{ event.active }}">
+                                    </div>-->
+
+                      </div>
+
+                      <input class="btn btn-primary offset-md-2" type="submit" value="Enregistrer">
+
+                  </form>
+              </div>
+
+          </div>
+          </div>
+          </div>
+      {% endblock %}

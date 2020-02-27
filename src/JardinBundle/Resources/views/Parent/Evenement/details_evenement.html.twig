@@ -1,0 +1,120 @@
+{% extends 'User/layout-yk.html.twig' %}
+{% block headerMenu %}
+    {% include "User/header-menu.html.twig" %}
+{% endblock headerMenu %}
+
+{% block body %}
+
+    <div id="breadcrumbs" class="section-block-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ol class="breadcrumb">
+                        <li><a href="#">Evenement</a></li>
+                        <li><a href="#">Détails evenement</a></li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="reviews_page" class="reviews_page" style="padding: 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10 dot">
+                    <h2 class="section-title">{{ event.titre }}</h2>
+                    <p class="section-description">
+                        {{ event.description }}
+                    </p>
+                </div>
+                <div class="col-md-1">
+
+                    <div class="blog_share social_icon t_white">
+                        <ul>
+                            <li class="plr_10">
+                                <a class="register-form" href="#contact_form">
+                                    <i class="plr_10 pr_10 b_comment fa fa-comment" style="background-color: #337ab7;">Commenter</i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <form method="post"  action="{{ path('parent_add_comment',{'id':event.id}) }}" id="contact_form" class="white-popup-block mfp-hide" novalidate="novalidate">
+                <div class="register_block">
+                    <button title="Close (Esc)" type="button" class="mfp-close ui-button ui-corner-all ui-widget">×
+                    </button>
+                    <div class="register_input">
+                        <div class="contact_form_white">
+                            <span>Saisir votre commentaire</span>
+                            <textarea id="message" name="text" rows="3" placeholder="Text" required=""></textarea>
+                            <div id="messegeResult" class="messegeResult">
+                                <p>The message was successfully sent</p>
+                                <button class="button ui-button ui-corner-all ui-widget" type="submit">Send</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+    </section>
+
+
+
+    <div id="reviews_content" class="section-block-wrapper reviews_content" style="padding-bottom: 200px;">
+        <div class="container">
+            {% for c in event.commentaires %}
+                <div class="row review_comment comment_green">
+                    <div class="comment_grid">
+                        <div class="col-md-12 last_week_c reviews_block comment_grid_item">
+                            <div class="author_block">
+                                <img class="author_avatar" src="img/blog/author1.jpg" alt="">
+                                <p class="author_name">{{ c.user.username }}</p>
+                            </div>
+                            <div class="comment_block">
+                                <div class="comment_title">
+
+                                    <div class="blog_share social_icon t_white">
+                                        {% if c.user.username == app.user.username %}
+                                        <ul>
+                                             <li class="plr_10">
+                                                 <a href="{{ path('parent_delete_comment',{'id':c.id}) }}">
+                                                     <i class="pr_10 b_comment fa fa-trash" style="background-color: #e04e3a;"> supprimer</i>
+
+                                                 </a>
+                                             </li>
+                                        </ul>
+                                        {% endif %}
+                                    </div>
+                                 {#   <a href="{{ path('delete_comment',{'id':c.id}) }}"
+                                       class="btn btn-sm btn-danger"
+                                       style="min-width:30px; margin-left: auto;">
+                                        <i class="far fa-trash-alt"></i>
+                                    </a>#}
+                                </div>
+                                <p>{{ c.contenu }}</p>
+                                <div class="comment_date">
+                                    <span><i class="fa fa-calendar"></i>{{ c.date | date("m-d-Y  h:m") }}</span>
+                                    {# <div class="button">
+                                         <a href="#">Reply</a>
+                                     </div>
+                                     <ul>
+                                         <li class="finger_up"><a href="#"><i class="fa fa-thumbs-up"></i></a>12</li>
+                                         <li class="finger_down"><a href="#"><i class="fa fa-thumbs-down"></i></a>3</li>
+                                     </ul>#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+{% endblock %}

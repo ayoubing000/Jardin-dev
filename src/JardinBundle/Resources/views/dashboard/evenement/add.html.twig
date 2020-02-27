@@ -1,0 +1,26 @@
+{% extends 'base_admin.html.twig' %}
+      {% block body %}
+          <div class="content-page" style="background: white">
+          <div class="content">
+              <div class="row">
+                  <div class="col-12">
+                      <div>
+                          <h4 class="header-title mb-3">Ajouter Evenement</h4>
+                      </div>
+                  </div>
+              </div>
+                      <div class="col-12 mt-1" style="text-align: end;">
+                          <a class="btn btn-teal" href={{ path('list_evenement') }}>
+                              <i class="ti-back-left"></i>
+                              Quitter
+                          </a>
+                      </div>
+
+                      <div class="col-12 mt-1 mb-4">
+                          {{ form(form) }}
+                          </div>
+                  </div>
+              </div>
+
+
+      {% endblock %}

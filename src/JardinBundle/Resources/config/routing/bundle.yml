@@ -1,0 +1,11 @@
+send_email:
+  path:     /send_email
+  defaults: { _controller: JardinBundle:Bundle:sendMail }
+
+send_phone:
+  path:     /send_phone
+  defaults: { _controller: JardinBundle:Bundle:phone }
+
+pdf_gen:
+  path:     /pdf/{id}
+  defaults: { _controller: JardinBundle:Bundle:Pdfgenerate }
